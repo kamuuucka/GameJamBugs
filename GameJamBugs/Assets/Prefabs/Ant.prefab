@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0027ba8833d6b44aab42a7bececc9c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   searchBar: {fileID: 5891997204573527716, guid: 0af7cbb68db5d41d58984c9494e39559, type: 3}
   letterToCarry: {fileID: 246389183125450733}
 --- !u!61 &246389183194134994
