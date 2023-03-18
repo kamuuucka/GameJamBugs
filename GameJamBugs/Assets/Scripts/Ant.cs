@@ -57,6 +57,10 @@ public class Ant : MonoBehaviour
         {
             transform.position += _step * _lastDirection;
         }
+        else
+        {
+            transform.position += transform.up * _step;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
