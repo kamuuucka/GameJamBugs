@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Search
+  - Hiding
   layers:
   - Default
   - TransparentFX

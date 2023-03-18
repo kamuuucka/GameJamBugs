@@ -18,12 +18,18 @@ public class CockroachBehaviour : MonoBehaviour
 
     private Vector2 _waypoint = Vector2.zero;
     private bool _dead;
+    private bool _hidden;
     private SpriteRenderer _spriteRenderer;
 
 
     private void OnMouseDown()
     {
-        _dead = true;
+        if (!_hidden)
+        {
+            _dead = true;
+            Debug.Log("He dead dead");
+        }
+       
     }
 
     // Start is called before the first frame update
@@ -56,6 +62,24 @@ public class CockroachBehaviour : MonoBehaviour
         {
             _waypoint = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
             yield return new WaitForSeconds(waitingTime);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Hiding"))
+        {
+            _hidden = true;
+            Debug.Log("I'm hiding hehe");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Hiding"))
+        {
+            _hidden = false;
+            Debug.Log("No more hiding");
         }
     }
 }
