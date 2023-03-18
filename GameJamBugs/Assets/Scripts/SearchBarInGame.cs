@@ -13,6 +13,7 @@ public class SearchBarInGame : MonoBehaviour
     private bool _isCorrect = false;
     private string _typedWord = "";
     private Dictionary<GameObject, Sprite> _letterSprites = new Dictionary<GameObject, Sprite>();
+    private Dictionary<GameObject, SpriteRenderer> _placeholdersSprites = new Dictionary<GameObject, SpriteRenderer>();
 
     public Dictionary<GameObject, Sprite> LetterSprites
     {
@@ -46,6 +47,14 @@ public class SearchBarInGame : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        foreach (GameObject ph in placeholders)
+        {
+            _placeholdersSprites.Add(ph, ph.GetComponent<SpriteRenderer>());
+        }
+    }
+
     private void Update()
     {
             TypeLetter();
@@ -64,8 +73,6 @@ public class SearchBarInGame : MonoBehaviour
     /// </summary>
     private void TypeLetter()
     {
-        Debug.Log(_lettersTyped < placeholders.Count);
-        Debug.Log(_isCorrect);
         if (Input.GetKeyUp(_pressedKey) && _lettersTyped < placeholders.Count && !_isCorrect)
         {
             char pressedKey = (char)_pressedKey;
@@ -74,7 +81,7 @@ public class SearchBarInGame : MonoBehaviour
             letterNumber -= 97;
             if (letterNumber is <= 25 and >= 0)
             {
-                placeholders[_lettersTyped].GetComponent<SpriteRenderer>().sprite = alphabet[letterNumber];
+                _placeholdersSprites[placeholders[_lettersTyped]].sprite = alphabet[letterNumber];
                 _letterSprites.Add(placeholders[_lettersTyped], alphabet[letterNumber]);
                 _lettersTyped++;
             }
@@ -90,7 +97,7 @@ public class SearchBarInGame : MonoBehaviour
         {
             foreach (GameObject placeholder in placeholders)
             {
-                placeholder.GetComponent<SpriteRenderer>().sprite = null;
+                _placeholdersSprites[placeholder].sprite = null;
                 _lettersTyped = 0;
                 _typedWord = "";
                 _isCorrect = false;
