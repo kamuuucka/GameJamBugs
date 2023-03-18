@@ -8,12 +8,14 @@ public class SearchBarInGame : MonoBehaviour
     [SerializeField] private List<Sprite> alphabet;
     [SerializeField] private List<GameObject> placeholders;
     [SerializeField] private string correctWord;
+    [SerializeField] private List<AntManagerScriptableObject> wordsCorrect;
 
     private KeyCode _pressedKey;
     private bool _isCorrect = false;
     private string _typedWord = "";
     private Dictionary<GameObject, Sprite> _letterSprites = new Dictionary<GameObject, Sprite>();
     private Dictionary<GameObject, SpriteRenderer> _placeholdersSprites = new Dictionary<GameObject, SpriteRenderer>();
+    private int _wordOnList = 0;
 
     public Dictionary<GameObject, Sprite> LetterSprites
     {
@@ -58,12 +60,13 @@ public class SearchBarInGame : MonoBehaviour
     private void Update()
     {
             TypeLetter();
-            WordCheck(correctWord);
+            WordCheck(wordsCorrect[_wordOnList].correctWord);
             EraseBar();
 
             if (Input.GetKeyUp(KeyCode.Return) && _isCorrect)
             {
                 Debug.Log("You are amazing");
+                _wordOnList++;
             }
     }
 
