@@ -12,8 +12,27 @@ public class SearchBarInGame : MonoBehaviour
     private KeyCode _pressedKey;
     private bool _isCorrect = false;
     private string _typedWord = "";
+    private Dictionary<GameObject, Sprite> _letterSprites = new Dictionary<GameObject, Sprite>();
+
+    public Dictionary<GameObject, Sprite> LetterSprites
+    {
+        get => _letterSprites;
+        set => _letterSprites = value;
+    }
 
     private int _lettersTyped = 0;
+
+    public List<GameObject> Placeholders
+    {
+        get => placeholders;
+        set => placeholders = value;
+    }
+
+    public int LettersTyped
+    {
+        get => _lettersTyped;
+        set => _lettersTyped = value;
+    }
 
     /// <summary>
     /// Used to detect the pressed key without having to know which key is it first
@@ -45,6 +64,8 @@ public class SearchBarInGame : MonoBehaviour
     /// </summary>
     private void TypeLetter()
     {
+        Debug.Log(_lettersTyped < placeholders.Count);
+        Debug.Log(_isCorrect);
         if (Input.GetKeyUp(_pressedKey) && _lettersTyped < placeholders.Count && !_isCorrect)
         {
             char pressedKey = (char)_pressedKey;
@@ -54,6 +75,7 @@ public class SearchBarInGame : MonoBehaviour
             if (letterNumber is <= 25 and >= 0)
             {
                 placeholders[_lettersTyped].GetComponent<SpriteRenderer>().sprite = alphabet[letterNumber];
+                _letterSprites.Add(placeholders[_lettersTyped], alphabet[letterNumber]);
                 _lettersTyped++;
             }
         }
@@ -72,13 +94,17 @@ public class SearchBarInGame : MonoBehaviour
                 _lettersTyped = 0;
                 _typedWord = "";
                 _isCorrect = false;
+                _letterSprites.Clear();
             }
         }
     }
 
+    /// <summary>
+    /// Check if the collected word is the same as the word added in the inspector TODO: list of words
+    /// </summary>
+    /// <param name="word"></param>
     private void WordCheck(string word)
     {
-        Debug.Log($"Typed word:{_typedWord}Desired word:{word}.");
         if (_typedWord==word)
         {
             _isCorrect = true;
@@ -87,5 +113,16 @@ public class SearchBarInGame : MonoBehaviour
         {
             _isCorrect = false;
         }
+    }
+
+    public void StealLetter()
+    {
+        _typedWord.Remove(_typedWord.Length - 1);
+        _isCorrect = false;
+        placeholders[_lettersTyped - 1].GetComponent<SpriteRenderer>().sprite = null;
+        _letterSprites.Remove(placeholders[_lettersTyped - 1]);
+        _lettersTyped--;
+        
+        
     }
 }
