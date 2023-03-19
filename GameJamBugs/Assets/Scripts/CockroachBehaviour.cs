@@ -14,17 +14,40 @@ public class CockroachBehaviour : MonoBehaviour
     [SerializeField] private float minY;
     [SerializeField] private float maxX;
     [SerializeField] private float maxY;
+    [SerializeField] private bool isLadyBug;
+
+    public bool IsLadyBug
+    {
+        get => isLadyBug;
+        set => isLadyBug = value;
+    }
+
     [SerializeField] private Sprite deadBug;
+    [SerializeField] private Animator animator;
 
     private Vector2 _waypoint = Vector2.zero;
     private bool _dead;
+    private bool _counted;
+
+    public bool Counted
+    {
+        get => _counted;
+        set => _counted = value;
+    }
+
+    public bool Dead
+    {
+        get => _dead;
+        set => _dead = value;
+    }
+
     private bool _hidden;
     private SpriteRenderer _spriteRenderer;
 
 
     private void OnMouseDown()
     {
-        if (!_hidden)
+        if (!_hidden && !_dead)
         {
             _dead = true;
             Debug.Log("He dead dead");
@@ -52,6 +75,7 @@ public class CockroachBehaviour : MonoBehaviour
         else
         {
             speed = 0;
+            animator.enabled = false;
             _spriteRenderer.sprite = deadBug;
         }
     }
