@@ -27,19 +27,6 @@ public class CockroachBehaviour : MonoBehaviour
 
     private Vector2 _waypoint = Vector2.zero;
     private bool _dead;
-    private bool _counted;
-
-    public bool Counted
-    {
-        get => _counted;
-        set => _counted = value;
-    }
-
-    public bool Dead
-    {
-        get => _dead;
-        set => _dead = value;
-    }
 
     private bool _hidden;
     private SpriteRenderer _spriteRenderer;
@@ -50,6 +37,15 @@ public class CockroachBehaviour : MonoBehaviour
         if (!_hidden && !_dead)
         {
             _dead = true;
+            if (isLadyBug)
+            {
+                BugsManager.Instance.SubtractScore();
+            }
+            else
+            {
+            BugsManager.Instance.AddScore();
+                
+            }
             Debug.Log("He dead dead");
         }
        

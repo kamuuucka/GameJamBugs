@@ -5,10 +5,22 @@ using UnityEngine;
 
 public class BugsManager : MonoBehaviour
 {
-    [SerializeField] private List<CockroachBehaviour> bugs;
     public static BugsManager Instance { get; private set; }
     private int _points;
+    [SerializeField] private int numberOfCockroaches;
 
+    private int _roachesKilled;
+
+    public void AddScore()
+    {
+        _points++;
+        _roachesKilled++;
+    }
+
+    public void SubtractScore()
+    {
+        _points--;
+    }
     private void Awake() 
     {
         if (Instance != null && Instance != this) 
@@ -23,20 +35,9 @@ public class BugsManager : MonoBehaviour
 
     private void Update()
     {
-        foreach (var bug in bugs)
+        if (_roachesKilled == numberOfCockroaches)
         {
-            if (bug.Dead && !bug.Counted)
-            {
-                if (bug.IsLadyBug)
-                {
-                    _points-=3;
-                }
-                else
-                {
-                    _points++;
-                }
-                bug.Counted = true;
-            }
+            Debug.Log("THE END YOU WON WOOOO");
         }
     }
 }

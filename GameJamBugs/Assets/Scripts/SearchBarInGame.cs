@@ -138,12 +138,12 @@ public class SearchBarInGame : MonoBehaviour
 
     public void StealLetter()
     {
-        _typedWord.Remove(_typedWord.Length - 1);
+        _typedWord = _typedWord.Remove(_typedWord.Length - 1,1);
         _isCorrect = false;
         placeholders[_lettersTyped - 1].GetComponent<SpriteRenderer>().sprite = null;
         _letterSprites.Remove(placeholders[_lettersTyped - 1]);
         _lettersTyped--;
         
-        
+        Debug.Log(_typedWord);
     }
 }
