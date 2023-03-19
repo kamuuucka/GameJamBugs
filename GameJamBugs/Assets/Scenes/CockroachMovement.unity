@@ -331,6 +331,7 @@ MonoBehaviour:
   maxX: 12
   maxY: 7
   isLadyBug: 1
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 170bcc4fae51742439d9231158fe7c4a, type: 3}
   animator: {fileID: 497671962}
 --- !u!212 &497671965
@@ -713,6 +714,7 @@ MonoBehaviour:
   maxX: 9
   maxY: 5
   isLadyBug: 0
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 9d22d648e0198c74d901a955c74d3040, type: 3}
   animator: {fileID: 813369507}
 --- !u!212 &813369510
@@ -1021,6 +1023,7 @@ MonoBehaviour:
   maxX: 12
   maxY: 7
   isLadyBug: 1
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 170bcc4fae51742439d9231158fe7c4a, type: 3}
   animator: {fileID: 858324636}
 --- !u!212 &858324639
@@ -1187,6 +1190,7 @@ MonoBehaviour:
   maxX: 9
   maxY: 5
   isLadyBug: 0
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 9d22d648e0198c74d901a955c74d3040, type: 3}
   animator: {fileID: 895415733}
 --- !u!212 &895415736
@@ -1353,6 +1357,7 @@ MonoBehaviour:
   maxX: 9
   maxY: 5
   isLadyBug: 0
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 9d22d648e0198c74d901a955c74d3040, type: 3}
   animator: {fileID: 928338587}
 --- !u!212 &928338590
@@ -1407,6 +1412,61 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &944152379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 944152381}
+  - component: {fileID: 944152380}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &944152380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944152379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 591a55cf926ef43ea9d08ef89dcc2175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: cockroach
+    clip: {fileID: 8300000, guid: b18a79381d2f84ac7a7a41eb7578c56d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: splat
+    clip: {fileID: 8300000, guid: 69f67d15cfe7a44c287ca1c922b23e94, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+--- !u!4 &944152381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944152379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &960888340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,6 +1579,7 @@ MonoBehaviour:
   maxX: 12
   maxY: 7
   isLadyBug: 1
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 170bcc4fae51742439d9231158fe7c4a, type: 3}
   animator: {fileID: 960888343}
 --- !u!212 &960888346
@@ -1694,6 +1755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1127221659}
   - component: {fileID: 1127221658}
+  - component: {fileID: 1127221660}
   m_Layer: 0
   m_Name: bottom layer
   m_TagString: Untagged
@@ -1768,6 +1830,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1127221660
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127221657}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7386e60c0178591489e71f9703d039bf, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1440186677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,6 +2149,7 @@ MonoBehaviour:
   maxX: 9
   maxY: 5
   isLadyBug: 0
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 9d22d648e0198c74d901a955c74d3040, type: 3}
   animator: {fileID: 1602446045}
 --- !u!212 &1602446048
@@ -2157,6 +2316,7 @@ MonoBehaviour:
   maxX: 12
   maxY: 7
   isLadyBug: 1
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 170bcc4fae51742439d9231158fe7c4a, type: 3}
   animator: {fileID: 1615370720}
 --- !u!212 &1615370723
@@ -2323,6 +2483,7 @@ MonoBehaviour:
   maxX: 9
   maxY: 5
   isLadyBug: 0
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 9d22d648e0198c74d901a955c74d3040, type: 3}
   animator: {fileID: 1767822503}
 --- !u!212 &1767822506
@@ -2489,6 +2650,7 @@ MonoBehaviour:
   maxX: 9
   maxY: 5
   isLadyBug: 0
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 9d22d648e0198c74d901a955c74d3040, type: 3}
   animator: {fileID: 1778440438}
 --- !u!212 &1778440441
@@ -2650,6 +2812,7 @@ MonoBehaviour:
   maxX: 9
   maxY: 5
   isLadyBug: 0
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 9d22d648e0198c74d901a955c74d3040, type: 3}
   animator: {fileID: 1899406741}
 --- !u!70 &1899406740
@@ -2932,6 +3095,7 @@ MonoBehaviour:
   maxX: 9
   maxY: 5
   isLadyBug: 0
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 9d22d648e0198c74d901a955c74d3040, type: 3}
   animator: {fileID: 1969543910}
 --- !u!212 &1969543913
@@ -3209,6 +3373,7 @@ MonoBehaviour:
   maxX: 12
   maxY: 7
   isLadyBug: 1
+  audioManager: {fileID: 944152380}
   deadBug: {fileID: 21300000, guid: 170bcc4fae51742439d9231158fe7c4a, type: 3}
   animator: {fileID: 2098513633}
 --- !u!212 &2098513636

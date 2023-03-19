@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class SearchBarInGame : MonoBehaviour
 {
     [SerializeField] private List<Sprite> alphabet;
     [SerializeField] private List<GameObject> placeholders;
     [SerializeField] private List<AntManagerScriptableObject> wordsCorrect;
+    [SerializeField] private AudioManager audioManager;
 
     private KeyCode _pressedKey;
     private bool _isCorrect = false;
@@ -90,6 +92,7 @@ public class SearchBarInGame : MonoBehaviour
     {
         if (Input.GetKeyUp(_pressedKey) && _lettersTyped < placeholders.Count && !_isCorrect)
         {
+            audioManager.Play("keyboardTyping");
             char pressedKey = (char)_pressedKey;
             _typedWord += pressedKey;
             int letterNumber = Convert.ToInt32(pressedKey);
@@ -138,6 +141,7 @@ public class SearchBarInGame : MonoBehaviour
 
     public void StealLetter()
     {
+        audioManager.Play("stealLetter");
         _typedWord = _typedWord.Remove(_typedWord.Length - 1,1);
         _isCorrect = false;
         placeholders[_lettersTyped - 1].GetComponent<SpriteRenderer>().sprite = null;
