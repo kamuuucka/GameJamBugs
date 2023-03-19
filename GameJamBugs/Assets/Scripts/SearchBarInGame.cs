@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SearchBarInGame : MonoBehaviour
 {
     [SerializeField] private List<Sprite> alphabet;
     [SerializeField] private List<GameObject> placeholders;
-    [SerializeField] private string correctWord;
     [SerializeField] private List<AntManagerScriptableObject> wordsCorrect;
 
     private KeyCode _pressedKey;
@@ -15,7 +15,7 @@ public class SearchBarInGame : MonoBehaviour
     private string _typedWord = "";
     private Dictionary<GameObject, Sprite> _letterSprites = new Dictionary<GameObject, Sprite>();
     private Dictionary<GameObject, SpriteRenderer> _placeholdersSprites = new Dictionary<GameObject, SpriteRenderer>();
-    private int _wordOnList = 0;
+    private int _wordOnList = 3;
 
     public Dictionary<GameObject, Sprite> LetterSprites
     {
@@ -59,15 +59,27 @@ public class SearchBarInGame : MonoBehaviour
 
     private void Update()
     {
+        if (_wordOnList > wordsCorrect.Count-1)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
             TypeLetter();
             WordCheck(wordsCorrect[_wordOnList].correctWord);
-            EraseBar();
+            if (Input.GetKeyUp(KeyCode.Backspace))
+            {
+                EraseBar();
+            }
 
             if (Input.GetKeyUp(KeyCode.Return) && _isCorrect)
             {
                 Debug.Log("You are amazing");
                 _wordOnList++;
+                EraseBar();
             }
+        }
+            
     }
 
     /// <summary>
@@ -96,8 +108,7 @@ public class SearchBarInGame : MonoBehaviour
     /// </summary>
     private void EraseBar()
     {
-        if (Input.GetKeyUp(KeyCode.Backspace))
-        {
+        
             foreach (GameObject placeholder in placeholders)
             {
                 _placeholdersSprites[placeholder].sprite = null;
@@ -106,7 +117,7 @@ public class SearchBarInGame : MonoBehaviour
                 _isCorrect = false;
                 _letterSprites.Clear();
             }
-        }
+        
     }
 
     /// <summary>
