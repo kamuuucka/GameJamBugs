@@ -61,6 +61,12 @@ public class Ant : MonoBehaviour
         {
             transform.position += transform.up * _step;
         }
+
+        if (transform.position.x > 10 || transform.position.x < -10 
+                                      || transform.position.y > 6 || transform.position.y < -6)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)

@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Buggle.unity
+    guid: 9aa468221825f40e2a6ad6cd356b1c87
+  - enabled: 1
+    path: Assets/Scenes/CockroachMovement.unity
+    guid: f60bf0ee813e0432287d1e53bb39c0ce
   m_configObjects: {}

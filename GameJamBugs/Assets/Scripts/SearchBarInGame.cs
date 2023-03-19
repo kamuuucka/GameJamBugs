@@ -2,18 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SearchBarInGame : MonoBehaviour
 {
     [SerializeField] private List<Sprite> alphabet;
     [SerializeField] private List<GameObject> placeholders;
-    [SerializeField] private string correctWord;
+    [SerializeField] private List<AntManagerScriptableObject> wordsCorrect;
 
     private KeyCode _pressedKey;
     private bool _isCorrect = false;
     private string _typedWord = "";
     private Dictionary<GameObject, Sprite> _letterSprites = new Dictionary<GameObject, Sprite>();
     private Dictionary<GameObject, SpriteRenderer> _placeholdersSprites = new Dictionary<GameObject, SpriteRenderer>();
+    private int _wordOnList = 3;
 
     public Dictionary<GameObject, Sprite> LetterSprites
     {
@@ -57,14 +59,27 @@ public class SearchBarInGame : MonoBehaviour
 
     private void Update()
     {
+        if (_wordOnList > wordsCorrect.Count-1)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
             TypeLetter();
-            WordCheck(correctWord);
-            EraseBar();
+            WordCheck(wordsCorrect[_wordOnList].correctWord);
+            if (Input.GetKeyUp(KeyCode.Backspace))
+            {
+                EraseBar();
+            }
 
             if (Input.GetKeyUp(KeyCode.Return) && _isCorrect)
             {
                 Debug.Log("You are amazing");
+                _wordOnList++;
+                EraseBar();
             }
+        }
+            
     }
 
     /// <summary>
@@ -93,8 +108,7 @@ public class SearchBarInGame : MonoBehaviour
     /// </summary>
     private void EraseBar()
     {
-        if (Input.GetKeyUp(KeyCode.Backspace))
-        {
+        
             foreach (GameObject placeholder in placeholders)
             {
                 _placeholdersSprites[placeholder].sprite = null;
@@ -103,7 +117,7 @@ public class SearchBarInGame : MonoBehaviour
                 _isCorrect = false;
                 _letterSprites.Clear();
             }
-        }
+        
     }
 
     /// <summary>
@@ -124,12 +138,12 @@ public class SearchBarInGame : MonoBehaviour
 
     public void StealLetter()
     {
-        _typedWord.Remove(_typedWord.Length - 1);
+        _typedWord = _typedWord.Remove(_typedWord.Length - 1,1);
         _isCorrect = false;
         placeholders[_lettersTyped - 1].GetComponent<SpriteRenderer>().sprite = null;
         _letterSprites.Remove(placeholders[_lettersTyped - 1]);
         _lettersTyped--;
         
-        
+        Debug.Log(_typedWord);
     }
 }
