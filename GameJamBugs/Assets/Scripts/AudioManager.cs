@@ -17,6 +17,11 @@ public class AudioManager : MonoBehaviour
             sound.source.volume = sound.volume;
             sound.source.pitch = sound.pitch;
         }
+
+        if (gameObject.CompareTag("Seamless"))
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
 
     public void Play(string name)

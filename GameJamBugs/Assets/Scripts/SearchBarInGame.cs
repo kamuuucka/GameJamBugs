@@ -54,6 +54,7 @@ public class SearchBarInGame : MonoBehaviour
 
     private void Start()
     {
+        ScoreManager.Instance.ResetScore();
         foreach (GameObject ph in placeholders)
         {
             _placeholdersSprites.Add(ph, ph.GetComponent<SpriteRenderer>());
@@ -68,6 +69,9 @@ public class SearchBarInGame : MonoBehaviour
         }
         if (_wordOnList > wordsCorrect.Count-1)
         {
+            Debug.Log("gets called");
+            Debug.Log(ScoreManager.Instance);
+            
             ScoreManager.Instance.SetUpPoints(_points);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -130,11 +134,12 @@ public class SearchBarInGame : MonoBehaviour
     }
 
     /// <summary>
-    /// Check if the collected word is the same as the word added in the inspector TODO: list of words
+    /// Check if the collected word is the same as the word added in the inspector
     /// </summary>
     /// <param name="word"></param>
     private void WordCheck(string word)
     {
+        Debug.Log($"Yourword: {_typedWord} WordToFind: {word}");
         if (_typedWord==word)
         {
             _isCorrect = true;

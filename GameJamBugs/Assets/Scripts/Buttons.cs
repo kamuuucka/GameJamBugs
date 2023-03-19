@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using TMPro;
 
 public class Buttons : MonoBehaviour
 {
     [SerializeField] private Image notes;
     [SerializeField] private AudioManager audioManager;
-    
+
     public void OpenOverlay()
     {
         notes.gameObject.SetActive(true);
