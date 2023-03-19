@@ -1,9 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SocialPlatforms;
 using Random = UnityEngine.Random;
 
 public class CockroachBehaviour : MonoBehaviour
@@ -16,13 +12,6 @@ public class CockroachBehaviour : MonoBehaviour
     [SerializeField] private float maxY;
     [SerializeField] private bool isLadyBug;
     [SerializeField] private AudioManager audioManager;
-
-    public bool IsLadyBug
-    {
-        get => isLadyBug;
-        set => isLadyBug = value;
-    }
-
     [SerializeField] private Sprite deadBug;
     [SerializeField] private Animator animator;
 
@@ -46,22 +35,17 @@ public class CockroachBehaviour : MonoBehaviour
             }
             else
             {
-            BugsManager.Instance.AddScore();
-                
+                BugsManager.Instance.AddScore();
             }
-            Debug.Log("He dead dead");
         }
-       
     }
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         StartCoroutine(StartRunning());
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!_dead)
@@ -87,6 +71,7 @@ public class CockroachBehaviour : MonoBehaviour
             {
                 audioManager.Play("cockroach");
             }
+
             _waypoint = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
             yield return new WaitForSeconds(waitingTime);
         }
@@ -97,7 +82,6 @@ public class CockroachBehaviour : MonoBehaviour
         if (col.gameObject.CompareTag("Hiding"))
         {
             _hidden = true;
-            Debug.Log("I'm hiding hehe");
         }
     }
 
@@ -106,7 +90,6 @@ public class CockroachBehaviour : MonoBehaviour
         if (col.gameObject.CompareTag("Hiding"))
         {
             _hidden = false;
-            Debug.Log("No more hiding");
         }
     }
 }

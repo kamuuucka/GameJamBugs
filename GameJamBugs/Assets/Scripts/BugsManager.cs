@@ -1,17 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BugsManager : MonoBehaviour
 {
     public static BugsManager Instance { get; private set; }
-    private int _points;
     [SerializeField] private int numberOfCockroaches;
     [SerializeField] private int numberOfLadybugs;
     [SerializeField] private float timeLeft = 60.0f;
-
+    private int _points;
     private int _roachesKilled;
     private int _ladybugKilled;
 
@@ -59,7 +55,6 @@ public class BugsManager : MonoBehaviour
         {
             ScoreManager.Instance.SetUpPoints(_points);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            Debug.Log("WON");
         }
     }
 }

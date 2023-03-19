@@ -1,30 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor.Build.Content;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Ant : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
     [SerializeField] private SearchBarInGame searchBar;
-
-    public SearchBarInGame SearchBar
-    {
-        get => searchBar;
-        set => searchBar = value;
-    }
-
     [SerializeField] private GameObject letterToCarry;
-
-    public GameObject LetterToCarry
-    {
-        get => letterToCarry;
-        set => letterToCarry = value;
-    }
-
     private List<GameObject> _letters;
     private SpriteRenderer _letterSprite;
     private Vector3 _target;
@@ -32,7 +13,11 @@ public class Ant : MonoBehaviour
     private bool _hasLetter;
     private float _step;
 
-
+    public SearchBarInGame SearchBar
+    { 
+        set => searchBar = value;
+    }
+    
     private void Awake()
     {
         _letterSprite = letterToCarry.GetComponent<SpriteRenderer>();
@@ -46,7 +31,6 @@ public class Ant : MonoBehaviour
         if (searchBar.LettersTyped > 0 && !_hasLetter)
         {
             _target = _letters[searchBar.LettersTyped - 1].transform.position;
-            //Vector3 antPosition = transform.position;
             float angle = Mathf.Atan2(_target.y - transform.position.y, _target.x - transform.position.x) *
                 Mathf.Rad2Deg - 90;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
@@ -77,16 +61,7 @@ public class Ant : MonoBehaviour
             {
                 PickUpLetter(col);
             }
-            else
-            {
-                Debug.Log("I cannot steal");
-            }
         }
-    }
-
-    private void Move(float step)
-    {
-        
     }
 
     private void PickUpLetter(Collider2D col)

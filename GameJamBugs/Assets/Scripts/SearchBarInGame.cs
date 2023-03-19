@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SearchBarInGame : MonoBehaviour
@@ -21,26 +19,11 @@ public class SearchBarInGame : MonoBehaviour
     private Dictionary<GameObject, SpriteRenderer> _placeholdersSprites = new Dictionary<GameObject, SpriteRenderer>();
     private int _wordOnList = 0;
     private int _points = 100;
-
-    public Dictionary<GameObject, Sprite> LetterSprites
-    {
-        get => _letterSprites;
-        set => _letterSprites = value;
-    }
-
     private int _lettersTyped = 0;
 
-    public List<GameObject> Placeholders
-    {
-        get => placeholders;
-        set => placeholders = value;
-    }
-
-    public int LettersTyped
-    {
-        get => _lettersTyped;
-        set => _lettersTyped = value;
-    }
+    public Dictionary<GameObject, Sprite> LetterSprites => _letterSprites;
+    public List<GameObject> Placeholders => placeholders;
+    public int LettersTyped => _lettersTyped;
 
     /// <summary>
     /// Used to detect the pressed key without having to know which key is it first
@@ -76,9 +59,6 @@ public class SearchBarInGame : MonoBehaviour
         }
         if (_wordOnList > wordsCorrect.Count-1)
         {
-            Debug.Log("gets called");
-            Debug.Log(ScoreManager.Instance);
-            
             ScoreManager.Instance.SetUpPoints(_points);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

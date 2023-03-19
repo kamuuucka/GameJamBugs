@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,12 +12,10 @@ public class ScoreManager : MonoBehaviour
     public void SetUpPoints(int value)
     {
         _points += value;
-        Debug.Log("Total: " + _points);
     }
 
     public void DisplayScore()
     {
-        Debug.Log(_points);
         score.text = _points.ToString();
     }
 
@@ -30,7 +26,6 @@ public class ScoreManager : MonoBehaviour
     
     private void Awake()
     {
-        Debug.Log(Instance + "awake called");
         if (Instance != null && Instance != this)
         {
             Destroy(this);
