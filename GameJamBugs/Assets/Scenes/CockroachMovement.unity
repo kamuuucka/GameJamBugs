@@ -707,7 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93e68c468d64464db48b37a4288ab48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 9.5
   waitingTime: 0.5
   minX: -9
   minY: -5
@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93e68c468d64464db48b37a4288ab48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 9.5
   waitingTime: 0.5
   minX: -9
   minY: -5
@@ -1350,7 +1350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93e68c468d64464db48b37a4288ab48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 9.5
   waitingTime: 0.5
   minX: -9
   minY: -5
@@ -2142,7 +2142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93e68c468d64464db48b37a4288ab48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 9.5
   waitingTime: 0.5
   minX: -9
   minY: -5
@@ -2476,7 +2476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93e68c468d64464db48b37a4288ab48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 9.5
   waitingTime: 0.5
   minX: -9
   minY: -5
@@ -2643,7 +2643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93e68c468d64464db48b37a4288ab48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 9.5
   waitingTime: 0.5
   minX: -9
   minY: -5
@@ -2805,7 +2805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93e68c468d64464db48b37a4288ab48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 9.5
   waitingTime: 0.5
   minX: -9
   minY: -5
@@ -3088,7 +3088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93e68c468d64464db48b37a4288ab48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 9.5
   waitingTime: 0.5
   minX: -9
   minY: -5
