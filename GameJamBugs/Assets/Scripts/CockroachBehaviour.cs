@@ -15,6 +15,7 @@ public class CockroachBehaviour : MonoBehaviour
     [SerializeField] private float maxX;
     [SerializeField] private float maxY;
     [SerializeField] private bool isLadyBug;
+    [SerializeField] private AudioManager audioManager;
 
     public bool IsLadyBug
     {
@@ -36,7 +37,9 @@ public class CockroachBehaviour : MonoBehaviour
     {
         if (!_hidden && !_dead)
         {
+            audioManager.Play("splat");
             _dead = true;
+            audioManager.Stop("cockroach");
             if (isLadyBug)
             {
                 BugsManager.Instance.SubtractScore();
@@ -80,6 +83,10 @@ public class CockroachBehaviour : MonoBehaviour
     {
         while (!_dead)
         {
+            if (!isLadyBug)
+            {
+                audioManager.Play("cockroach");
+            }
             _waypoint = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
             yield return new WaitForSeconds(waitingTime);
         }
