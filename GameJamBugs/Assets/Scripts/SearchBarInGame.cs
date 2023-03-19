@@ -18,6 +18,7 @@ public class SearchBarInGame : MonoBehaviour
     private Dictionary<GameObject, Sprite> _letterSprites = new Dictionary<GameObject, Sprite>();
     private Dictionary<GameObject, SpriteRenderer> _placeholdersSprites = new Dictionary<GameObject, SpriteRenderer>();
     private int _wordOnList = 3;
+    private int _points = 100;
 
     public Dictionary<GameObject, Sprite> LetterSprites
     {
@@ -53,6 +54,7 @@ public class SearchBarInGame : MonoBehaviour
 
     private void Start()
     {
+        ScoreManager.Instance.ResetScore();
         foreach (GameObject ph in placeholders)
         {
             _placeholdersSprites.Add(ph, ph.GetComponent<SpriteRenderer>());
@@ -61,8 +63,16 @@ public class SearchBarInGame : MonoBehaviour
 
     private void Update()
     {
+        if (_points <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
         if (_wordOnList > wordsCorrect.Count-1)
         {
+            Debug.Log("gets called");
+            Debug.Log(ScoreManager.Instance);
+            
+            ScoreManager.Instance.SetUpPoints(_points);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
@@ -124,11 +134,12 @@ public class SearchBarInGame : MonoBehaviour
     }
 
     /// <summary>
-    /// Check if the collected word is the same as the word added in the inspector TODO: list of words
+    /// Check if the collected word is the same as the word added in the inspector
     /// </summary>
     /// <param name="word"></param>
     private void WordCheck(string word)
     {
+        Debug.Log($"Yourword: {_typedWord} WordToFind: {word}");
         if (_typedWord==word)
         {
             _isCorrect = true;
@@ -142,6 +153,7 @@ public class SearchBarInGame : MonoBehaviour
     public void StealLetter()
     {
         audioManager.Play("stealLetter");
+        _points--;
         _typedWord = _typedWord.Remove(_typedWord.Length - 1,1);
         _isCorrect = false;
         placeholders[_lettersTyped - 1].GetComponent<SpriteRenderer>().sprite = null;

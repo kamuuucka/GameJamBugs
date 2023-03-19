@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Search
   - Hiding
+  - Seamless
   layers:
   - Default
   - TransparentFX
