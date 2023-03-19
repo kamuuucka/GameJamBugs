@@ -94,6 +94,7 @@ public class SearchBarInGame : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Return) && _isCorrect)
             {
                 Debug.Log("You are amazing");
+                audioManager.Play("wordCorrect");
                 lines[_wordOnList].enabled = true;
                 _wordOnList++;
                 EraseBar();

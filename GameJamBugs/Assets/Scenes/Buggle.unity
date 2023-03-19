@@ -1834,6 +1834,11 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: wordCorrect
+    clip: {fileID: 8300000, guid: 95d71653921d44e369d142facdad02c6, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &1773252311
 Transform:
   m_ObjectHideFlags: 0
