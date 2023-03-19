@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class SearchBarInGame : MonoBehaviour
 {
     [SerializeField] private List<Sprite> alphabet;
     [SerializeField] private List<GameObject> placeholders;
     [SerializeField] private List<AntManagerScriptableObject> wordsCorrect;
+    [SerializeField] private List<Image> lines;
     [SerializeField] private AudioManager audioManager;
 
     private KeyCode _pressedKey;
@@ -17,7 +19,7 @@ public class SearchBarInGame : MonoBehaviour
     private string _typedWord = "";
     private Dictionary<GameObject, Sprite> _letterSprites = new Dictionary<GameObject, Sprite>();
     private Dictionary<GameObject, SpriteRenderer> _placeholdersSprites = new Dictionary<GameObject, SpriteRenderer>();
-    private int _wordOnList = 3;
+    private int _wordOnList = 0;
     private int _points = 100;
 
     public Dictionary<GameObject, Sprite> LetterSprites
@@ -59,6 +61,11 @@ public class SearchBarInGame : MonoBehaviour
         {
             _placeholdersSprites.Add(ph, ph.GetComponent<SpriteRenderer>());
         }
+
+        foreach (var line in lines)
+        {
+            line.enabled = false;
+        }
     }
 
     private void Update()
@@ -87,6 +94,7 @@ public class SearchBarInGame : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Return) && _isCorrect)
             {
                 Debug.Log("You are amazing");
+                lines[_wordOnList].enabled = true;
                 _wordOnList++;
                 EraseBar();
             }
@@ -104,11 +112,12 @@ public class SearchBarInGame : MonoBehaviour
         {
             audioManager.Play("keyboardTyping");
             char pressedKey = (char)_pressedKey;
-            _typedWord += pressedKey;
+            
             int letterNumber = Convert.ToInt32(pressedKey);
             letterNumber -= 97;
             if (letterNumber is <= 25 and >= 0)
             {
+                _typedWord += pressedKey;
                 _placeholdersSprites[placeholders[_lettersTyped]].sprite = alphabet[letterNumber];
                 _letterSprites.Add(placeholders[_lettersTyped], alphabet[letterNumber]);
                 _lettersTyped++;

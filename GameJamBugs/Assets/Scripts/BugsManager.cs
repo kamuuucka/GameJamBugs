@@ -37,6 +37,8 @@ public class BugsManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        _points = 0;
     }
 
     private void Update()
